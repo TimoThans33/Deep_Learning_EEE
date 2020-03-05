@@ -1,0 +1,139 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+\setcounter{page}{1}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Author Name, username, CID}
+
+%\author{Name\\
+%username\\
+%CID\\
+%{\tt\small github_username}
+%% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+
+
+\maketitle
+%\thispagestyle{empty}
+
+The interim report should include all tutorial tasks on CNN Introduction, CNN Architectures, Evaluation measures, Network Training.
+
+
+%%%%%%%%% BODY TEXT
+\section{CNN Introduction: task 1}
+
+
+{ \bf Paper length} Interim report, excluding the references section,
+must be no longer than 2 pages in length. The references section
+will not be included in the page count, and there is no limit on the
+length of the references section. The references (citations) should be made to relevant slides in the lecture notes.
+
+
+
+\begin{figure}[t]
+\begin{center}
+\fbox{\rule{0pt}{1in} \rule{0.8\linewidth}{0pt}}
+%   \includegraphics[width=0.8\linewidth]{egfigure.pdf}
+\end{center}
+   \caption{Example of caption.  It is set in Roman so that mathematics
+   (always set in Roman: $B \sin A = A \sin B$) may be included without an
+   ugly clash.}
+\label{fig:long}
+\label{fig:onecol}
+\end{figure}
+
+
+Each coursework task should have its section in this report. It should include outputs specified in task description e.g. figures or tables, and a discussion of each presented figure or table e.g. the main observations and their explanation. 
+
+
+%-------------------------------------------------------------------------
+{\bf Figures, graphs, and photographs}
+
+All graphics should be centred.  Please ensure that any point you wish to
+make is resolvable in a printed copy of the paper.  Resize fonts in figures
+to match the font in the body text, and choose line widths which render
+effectively in print. 
+
+When placing figures in \LaTeX, it's almost always best to use
+\verb+\includegraphics+, and to specify the  figure width as a multiple of
+the line width as in the example below
+{\small\begin{verbatim}
+   \usepackage[dvips]{graphicx} ...
+   \includegraphics[width=0.8\linewidth]
+                   {myfile.eps}
+\end{verbatim}
+}
+
+\section{CNN Introduction: task 2}
+
+\begin{figure}[t]
+\begin{center}
+\fbox{\rule{0pt}{1in} \rule{0.8\linewidth}{0pt}}
+   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
+\end{center}
+   \caption{Caption.}
+\label{fig:long}
+\label{fig:onecol}
+\end{figure}
+
+
+
+\section{Network Evaluation Measures: task ...}
+
+
+\begin{table}[ht]
+\small
+    % INFO: --- Student cross entropy lambda = 1.0
+    % INFO: --- Teacher cross entropy lambda = 0.0
+    % INFO: --- Output knowledge distillation lambda1 = 0.0, lambda2 = 0.0, lambda3 = 1.0
+    \centering
+    \begin{tabular}{c|c|c}
+%        \hline
+        Model size (\%) & \multicolumn{2}{c}{ Accuracy (\%)} \\
+        \hline
+        & Hard & Soft \\
+        \hline
+        27\% & 92.62 & 92.43 \\ % Epoch 31-35
+        50\% & 92.74 & 92.58 \\ % Epoch 56-60
+        72\% & X & X \\ % Epoch 81-85
+        90\% & X & X \\ % Epoch 101-105
+        95\% & X & X \\ % Epoch 106-110
+%        \hline
+    \end{tabular}%
+    \medbreak
+    \caption{Table example.}
+    \label{table:hard_vs_soft_pruning}
+\end{table}
+\section{Network Training: task ...}
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+\end{document}

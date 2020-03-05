@@ -1,0 +1,82 @@
+
+
+
+
+"""
+Here we actually design our architecture
+"""
+
+
+from keras.applications.vgg16 import VGG16
+from keras.layers import Lambda, Input
+from keras.models import Model
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import time
+
+model = Sequential()
+
+# Resize input image
+model.add(Lambda(lambda x: tf.image.resize_images(x, (224, 224)), input_shape=(64,64,3)))
+
+# 1st Convolutional Layer
+model.add(Convolution2D(filters=96, kernel_size=(11,11), strides=(4,4), padding='valid'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid'))
+
+# 2nd Convolutional Layer
+model.add(Convolution2D(filters=256, kernel_size=(11,11), strides=(1,1), padding='valid'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid'))
+
+# 3rd Convolutional Layer
+model.add(Convolution2D(filters=384, kernel_size=(3,3), strides=(1,1), padding='valid'))
+model.add(Activation('relu'))
+
+# 4th Convolutional Layer
+model.add(Convolution2D(filters=384, kernel_size=(3,3), strides=(1,1), padding='valid'))
+model.add(Activation('relu'))
+
+# 5th Convolutional Layer
+model.add(Convolution2D(filters=256, kernel_size=(3,3), strides=(1,1), padding='valid'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid'))
+
+# Passing it to a Fully Connected layer
+model.add(Flatten())
+
+# 1st Fully Connected Layer
+model.add(Dense(4096, input_shape=(224*224*3,)))
+model.add(Activation('relu'))
+# Add Dropout to prevent overfitting
+model.add(Dropout(0.4))
+
+# 2nd Fully Connected Layer
+model.add(Dense(4096))
+model.add(Activation('relu'))
+# Add Dropout
+model.add(Dropout(0.4))
+
+# 3rd Fully Connected Layer
+model.add(Dense(200))
+model.add(Activation('softmax'))
+
+model.summary()
+time1 = time.time()
+model.compile(optimizer='sgd',loss='categorical_crossentropy', metrics=['categorical_accuracy'])
+history = model.fit(train_data, train_labels, epochs=20, batch_size=256, validation_data=(val_data, val_labels))
+time2 = time.time()
+print(history.history.keys())
+plt.plot(history.history['categorical_accuracy'])
+plt.plot(history.history['val_categorical_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+print("Training Time", time2-time1)
+
+score = model.evaluate(test_data, test_labels)
+print('Test loss:', score[0])
+print('Test accuracy:', score[1])
+
